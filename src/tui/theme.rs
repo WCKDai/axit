@@ -1,7 +1,7 @@
 use ratatui::style::Color;
 
-// AXIT / Copper. Keep palette roles here so every input state shares one theme.
-pub(super) const ACCENT: Color = Color::Rgb(217, 150, 107);
+// AXIT / Bronze. Keep palette roles here so every input state shares one theme.
+pub(super) const ACCENT: Color = Color::Rgb(201, 160, 97);
 pub(super) const BG: Color = Color::Rgb(20, 25, 29);
 pub(super) const PANEL: Color = Color::Rgb(28, 34, 38);
 pub(super) const FG: Color = Color::Rgb(232, 230, 225);

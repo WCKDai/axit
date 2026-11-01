@@ -8,7 +8,7 @@ telemetry, network service or file-content indexing is required.
 
 ![AXIT terminal storage browser, captured with temporary test fixtures](assets/tui.svg)
 
-AXIT's **Copper** palette uses `#D9966B` for its identity and navigation, charcoal
+AXIT's **Bronze** palette uses `#C9A061` for its identity and navigation, charcoal
 and graphite surfaces, chalk text, cool blue information and rose destructive actions.
 [View the palette](assets/palette.svg). Runtime colors live in `src/tui/theme.rs`;
 text and action colors have automated contrast checks.
@@ -20,33 +20,33 @@ editing it; site checks verify both generated SVGs match.
 ## Project status
 
 [Plane: Axit / AXIT](https://app.plane.so/wckd/projects/21757fa0-759f-4ce5-a114-4620fd693302/issues/)
-tracks current work. [Axit 0.6.0](https://github.com/wckdboy/axit/releases/tag/v0.6.0)
+tracks current work. [Axit 0.6.0](https://github.com/WCKDai/axit/releases/tag/v0.6.0)
 is released for macOS/Linux ARM64 and x86-64. CLI, TUI, MCP and ACP can explicitly
 refresh selected metadata paths without rebuilding the base index. Background
 progress, cancellation, scoped reports and full-scan compaction are available.
 Existing readers, focus and query edits survive publication; unrelated stale-file
 markers remain visible. The Apps manager, complete result pagination, reviewed
-file operations, Copper palette and shared pixel mark remain included.
+file operations, Bronze palette and shared pixel mark remain included.
 [axit.sh](https://axit.sh) is deployed through the standard [Wrangler workflow](site/README.md).
 
-[Source CI](https://github.com/wckdboy/axit/actions/runs/40219048315) passed 128 Rust
+[Source CI](https://github.com/WCKDai/axit/actions/runs/40219048315) passed 128 Rust
 tests on macOS and 125 on Linux (one existing ignored test per platform), plus
 370/385 protocol checks, installer/tamper, PTY keyboard/mouse/Apps integration and
-site checks. [Merged-source CI](https://github.com/wckdboy/axit/actions/runs/40220269586),
-[tag checks](https://github.com/wckdboy/axit/actions/runs/40220273061) and the
-[four-platform release workflow](https://github.com/wckdboy/axit/actions/runs/40220272797)
+site checks. [Merged-source CI](https://github.com/WCKDai/axit/actions/runs/40220269586),
+[tag checks](https://github.com/WCKDai/axit/actions/runs/40220273061) and the
+[four-platform release workflow](https://github.com/WCKDai/axit/actions/runs/40220272797)
 passed. Public archives match SHA256SUMS and GitHub asset digests; Mac signatures
 verify. The published Intel package passes protocol, installer/tamper and PTY
 checks through Rosetta. The official native upgrade preserves the existing index
 and preferences and matches the public ARM64 binary.
 
-[VALIDATION.json](https://github.com/wckdboy/axit/releases/download/v0.6.0/VALIDATION.json)
+[VALIDATION.json](https://github.com/WCKDai/axit/releases/download/v0.6.0/VALIDATION.json)
 records packages, source/release CI, review, installation, fixture benchmark and
 production evidence. Both production hosts match the merged build; desktop,
 mobile, 320 px, dark mode, keyboard and copy checks pass. Local test/build storage
 is bounded and temporary file-operation fixtures stay separate from user data.
 
-[PR #9](https://github.com/wckdboy/axit/pull/9) includes deterministic race tests for
+[PR #9](https://github.com/WCKDai/axit/pull/9) includes deterministic race tests for
 in-place writes with unchanged directory timestamps, nested mutations, related
 hardlinks and cancellation at commit. Permission tests retain existing restricted
 gaps while protecting known descendants. The ACP isolation test checks the
@@ -71,7 +71,7 @@ axit
 ```
 
 Release downloads need no Rust toolchain or GitHub sign-in. The same installer is
-available from [GitHub Releases](https://github.com/wckdboy/axit/releases/latest/download/install.sh).
+available from [GitHub Releases](https://github.com/WCKDai/axit/releases/latest/download/install.sh).
 From an existing checkout, you can also run `sh install.sh`.
 
 From a source checkout with Rust 1.88 or newer:
@@ -467,7 +467,7 @@ A read-only 0.5 run used the existing 5,518,083-entry, 473,933,635-byte index.
 500-row windows across 4,705,831 file matches took 59–80 ms in the engine and
 63–86 ms over persistent MCP, including last and previous windows. The index and
 preferences were unchanged. These are single-machine measurements, not a latency
-guarantee; the [release proof](https://github.com/wckdboy/axit/releases/download/v0.5.0/VALIDATION.json)
+guarantee; the [release proof](https://github.com/WCKDai/axit/releases/download/v0.5.0/VALIDATION.json)
 includes the individual measurements.
 
 ## Build and verify
