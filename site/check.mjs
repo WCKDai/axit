@@ -6,7 +6,7 @@ import {execFileSync} from 'node:child_process';
 const root=dirname(fileURLToPath(import.meta.url));const dist=join(root,'dist');
 execFileSync('python3',[join(root,'../scripts/render-logo.py'),'--check'],{stdio:'inherit'});
 const html=await readFile(join(dist,'index.html'),'utf8');
-assert(html.includes('<title>Axit'));assert(html.includes('https://axit.sh/'));assert(html.includes('https://github.com/wckdboy/axit'));
+assert(html.includes('<title>Axit'));assert(html.includes('https://axit.sh/'));assert(html.includes('https://github.com/WCKDai/axit'));
 const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));
 for(const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)){
   const url=match[1];
