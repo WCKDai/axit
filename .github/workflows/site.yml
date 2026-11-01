@@ -1,0 +1,36 @@
+name: Site
+# axit.sh: build and check the static site, then deploy it to Cloudflare (Worker axit-site).
+# Only main deploys; the Cloudflare secrets are WCKDai org secrets shared with this repository.
+on:
+  push:
+    branches: [main]
+    paths:
+      - site/**
+      - assets/tui.svg
+      - assets/palette.svg
+      - assets/mark.svg
+      - install.sh
+      - .github/workflows/site.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: site-deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build and check
+        run: npm --prefix site run check
+      - name: Deploy axit.sh
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: npm --prefix site run deploy
+      - name: Cloudflare is not configured
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "::warning::CLOUDFLARE_API_TOKEN is not available to this repository; the site was checked but not deployed."
