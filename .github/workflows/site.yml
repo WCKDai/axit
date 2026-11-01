@@ -22,15 +22,18 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      # Only whether Cloudflare is configured; the credentials reach the deploy step alone.
+      CLOUDFLARE_CONFIGURED: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Build and check
         run: npm --prefix site run check
       - name: Deploy axit.sh
-        if: env.CLOUDFLARE_API_TOKEN != ''
+        if: env.CLOUDFLARE_CONFIGURED == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: npm --prefix site run deploy
       - name: Cloudflare is not configured
-        if: env.CLOUDFLARE_API_TOKEN == ''
+        if: env.CLOUDFLARE_CONFIGURED != 'true'
         run: echo "::warning::CLOUDFLARE_API_TOKEN is not available to this repository; the site was checked but not deployed."
